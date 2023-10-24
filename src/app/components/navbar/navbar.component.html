@@ -1,0 +1,27 @@
+<div *ngIf="!isLoggedIn">
+
+</div>
+<div *ngIf="isLoggedIn">
+  <div class="contenedor px-5 mb-1">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <div class="col-8 mt-2"><span class="titulo">
+          <img class="mb-3" src="https://cdn-icons-png.flaticon.com/512/4185/4185714.png" width="6%">
+          Tutoriales
+        </span></div>
+        <div class="col-4 mt-4 texto-derecho">
+          <a mat-button  class="example-icon favorite-icon px-5"
+            aria-label="Example icon-button with heart icon" (click)="irAlDashboardSegunRol()">
+            {{ user.nombres }}
+        </a>
+        <a (click)="logout()" mat-button class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon">
+            Cerrar sesión 
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

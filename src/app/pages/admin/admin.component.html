@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-3">
+            <div class="card shadow pt-3 pb-4 px-4">
+                <h2 class="text-center"><b>Administrador</b></h2>
+                <hr>
+                <b>Nombres: </b>
+                {{user.nombres}}
+                <b>Nombre de usuario:</b>
+                {{user.username}}
+                <hr>
+                <b class="text-center">Agregar tutorial</b>
+                <br>
+                <form [formGroup]="tutorialForm" (ngSubmit)="guardarTutorial()">
+                    
+                        <div class="form-group mb-3">
+                            <label for="last-name">Titulo <b class="text-danger">*</b></label>
+                            <input formControlName="titulo" type="text" class="form-control form-control-sm" placeholder="Titulo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="country"> Descripción <b class="text-danger">*</b></label>
+                            <input formControlName="descripcion" type="text" class="form-control form-control-sm" placeholder="Descripción">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="number">Foto del tutorial <b class="text-danger">*</b></label>
+                            <input (change)="obtenerFoto($event)" type="file" class="form-control form-control-sm">
+                        </div>
+                                <button type="submit" class="btn btn-primary" id="search">Crear tutorial</button>
+                    
+                </form>
+
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="card shadow pt-3 pb-4 px-4">
+                <h2 class=""><b>Lista de tutoriales</b></h2>
+                <hr>
+                <div class="row">
+                    <div class="col-4" *ngFor="let item of tutoriales">
+                        <div class="card p-4 mb-3" >
+                            <h4><b>Titulo:</b> {{item.titulo}}<a class="link"> (editar)</a></h4>
+                            <hr>
+                            <img [src]="item.foto" class="mb-2" height="120px">
+                            <p> {{item.descripcion}}</p>
+                            <p><b>Fecha de publicación:</b> {{item.fecha}}</p>
+                            <hr>
+                            <p>Desea <a class="link" (click)="eliminarTitulo(item.idTutorial)"> eliminar</a> el tutorial?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

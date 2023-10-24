@@ -1,0 +1,92 @@
+<div class="container" *ngIf="!modoVideo">
+    <div class="row mt-5">
+        <div class="col-4" *ngFor="let item of tutoriales">
+            <div class="card p-4 mb-3">
+                <img (click)="abrirTutorial(item)" [src]="item.foto" class="mb-2 link" height="250px">
+                <hr>
+                <h2><b>{{item.titulo}}</b></h2>
+                <p>{{item.descripcion}}</p>
+                <p>{{item.fecha}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="modoVideo">
+    <div class="row mt-5">
+        <div class="row">
+            <div class="col-8">
+                <h1><b>{{tutorialAbierto.titulo}}</b></h1>
+                <hr>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="card p-4 mb-3">
+                            <img [src]="tutorialAbierto.foto" class="mb-2 link" height="300px">
+                            <hr>
+                            <p>{{tutorialAbierto.descripcion}}</p>
+                            <p>{{tutorialAbierto.fecha}}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+
+                        <h2>Comentarios</h2>
+                        <form [formGroup]="comentarioForm">
+
+                            <div class="form-group mb-3">
+                                <label *ngIf="!estaEditarComentario" for="last-name">Agregar comentario <b
+                                        class="text-danger">*</b></label>
+                                <label *ngIf="estaEditarComentario" for="last-name">Editar comentario <b
+                                        class="text-danger">*</b></label>
+                                <input formControlName="comentario" type="text" class="form-control form-control-sm"
+                                    placeholder="Comentario">
+                                    <br>
+                                <button class="btn btn-sm btn-primary" *ngIf="!estaEditarComentario" (click)="guardarComentario()">Guardar</button>
+                                <button class="btn btn-sm btn-primary" *ngIf="estaEditarComentario" (click)="editarComentario()">Editar</button>
+
+                            </div>
+                        </form>
+                        <div *ngFor="let item of comentariosDeTutorial">
+                            <div class="row">
+                                <div class="col-10">
+                                    <b *ngIf="user.idUsuario == item.usuario.idUsuario">Yo:</b>
+                                    <b *ngIf="user.idUsuario != item.usuario.idUsuario">{{item.usuario.nombres}}</b>
+
+                                    <p>{{item.contenido}}</p>
+                                </div>
+                                <div class="col-2">
+                                    <div class="mt-3" *ngIf="user.idUsuario == item.usuario.idUsuario">
+                                        <a class="link px-1" (click)="editar(item)">Editar</a>
+
+                                        <a class="link px-2"
+                                            (click)="eliminarComentario(item.idComentario)">Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-3">
+                <div class="row">
+                    <h2>Otros tutoriales</h2>
+                    <hr>
+                    <div class="col-10" *ngFor="let item of tutoriales">
+                        <div class="card p-4 mb-3" *ngIf="item.idTutorial != tutorialAbierto.idTutorial">
+                            <img (click)="abrirTutorial(item)" [src]="item.foto" class="mb-2 link" height="150px">
+                            <hr>
+                            <h2><b>{{item.titulo}}</b></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

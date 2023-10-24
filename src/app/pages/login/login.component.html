@@ -1,0 +1,39 @@
+<i class="fa fa-lock" aria-hidden="true"></i>
+<div class="contenedor">
+    <div class="img">
+        <img src="https://mkt.progrentis.com/wp-content/uploads/2020/10/ilustraciones-octubre-04.png" alt="">
+    </div>
+    <div class="contenido-login" >
+        <div class="card px-5 py-4 shadow-lg rounded ">
+            
+        <form (ngSubmit)="formSubmit()">
+
+            <img src="assets/img/iconoUsuarioForm.png" class="mt-3">
+            <h2 class="mt-4">Bienvenido</h2>
+            <div class="input-div nit">
+                <div class="i">
+                    <i class="fa-sharp fa-solid fa-user"></i>
+                </div>
+                <div class="div">
+
+                    <input [(ngModel)]="loginData.username" required name="username" 
+                                placeholder="Usuario">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fa-sharp fa-solid fa-user"></i>
+                </div>
+                <div class="div">
+                    <input [(ngModel)]="loginData.password" required name="password" type="password"placeholder="Contraseña">
+                </div>
+            </div>
+
+
+            <button class="btn" name='login'> Iniciar sesion
+            </button>
+
+        </form>
+        </div>
+    </div>
+</div>
